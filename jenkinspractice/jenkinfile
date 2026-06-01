@@ -17,25 +17,33 @@ stages {
 
     stage('Clean') {
         steps {
-            bat 'mvn clean'
+            dir('jenkinspractice') {
+                bat 'mvn clean'
+            }
         }
     }
 
     stage('Compile') {
         steps {
-            bat 'mvn compile'
+            dir('jenkinspractice') {
+                bat 'mvn compile'
+            }
         }
     }
 
     stage('Test') {
         steps {
-            bat 'mvn test'
+            dir('jenkinspractice') {
+                bat 'mvn test'
+            }
         }
     }
 
     stage('Package') {
         steps {
-            bat 'mvn package'
+            dir('jenkinspractice') {
+                bat 'mvn package'
+            }
         }
     }
 }
