@@ -16,7 +16,7 @@ stages {
         }
     }
 
-    stage('Build') {
+    stage('Clean') {
         steps {
             bat 'mvn clean'
         }
