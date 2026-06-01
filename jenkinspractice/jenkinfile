@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+ 
+    tools {
+        maven 'Maven3'
+        JDK "jdk21"
+    }
+ 
+    stages {
+ 
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/rajputRahulsingh/jenkinsproject1'
+            }
+        }
+ 
+       stage('Build') {
+            steps {
+                 {
+                    bat 'mvn clean'
+                }
+            }
+        }
+ 
+        stage('Compile') {
+            steps {
+                bat 'mvn compile'
+            }
+        }
+ 
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+ 
+        stage('Package') {
+            steps {
+                bat 'mvn package'
+            }
+        }
+    }
+ 
+    post {
+        success {
+            echo 'Build Successful'
+        }
+ 
+        failure {
+            echo 'Build Failed'
+        }
+    }
+}
+ 
