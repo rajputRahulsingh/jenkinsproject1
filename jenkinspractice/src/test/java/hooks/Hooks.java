@@ -14,10 +14,14 @@ public class Hooks {
     }
 
     @After
+   
     public void tearDown() {
 
-        DriverFactory.driver.quit();
 
-        System.out.println("Browser Closed");
+    if (DriverFactory.driver != null) {
+        DriverFactory.driver.quit();
+    }
+   
+
     }
 }

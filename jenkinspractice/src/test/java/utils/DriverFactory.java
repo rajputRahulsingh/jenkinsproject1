@@ -2,21 +2,24 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverFactory {
 
-    public static WebDriver driver;
+public static WebDriver driver;
 
-    public static WebDriver initializeBrowser() {
+public static WebDriver initializeBrowser() {
 
-        WebDriverManager.chromedriver().setup();
+    ChromeOptions options = new ChromeOptions();
 
-        driver = new ChromeDriver();
+    options.addArguments("--headless");
+    options.addArguments("--no-sandbox");
+    options.addArguments("--disable-dev-shm-usage");
 
-        driver.manage().window().maximize();
+    driver = new ChromeDriver(options);
 
-        return driver;
-    }
+    return driver;
+}
+
+
 }
