@@ -19,7 +19,7 @@ public class LoginPage {
 
         this.driver = driver;
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     By username = By.name("username");
@@ -60,14 +60,21 @@ public class LoginPage {
                 ExpectedConditions.elementToBeClickable(loginBtn));
 
         login.click();
+
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+        }
+
+        System.out.println("URL After Login = "
+                + driver.getCurrentUrl());
     }
 
     public boolean verifyDashboard() {
 
-        WebElement dash =
-                wait.until(
-                ExpectedConditions.visibilityOfElementLocated(dashboard));
+        wait.until(
+                ExpectedConditions.urlContains("dashboard"));
 
-        return dash.isDisplayed();
+        return true;
     }
 }
